@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[ykatsu Blog]]></title>
+  <title><![CDATA[ykatsu blog]]></title>
   <link href="http://ykatsu.github.com/atom.xml" rel="self"/>
   <link href="http://ykatsu.github.com/"/>
-  <updated>2012-07-17T23:46:36+09:00</updated>
+  <updated>2012-07-17T23:47:27+09:00</updated>
   <id>http://ykatsu.github.com/</id>
   <author>
     <name><![CDATA[ykatsu]]></name>
