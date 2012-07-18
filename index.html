@@ -9,7 +9,8 @@
   <meta name="author" content="ykatsu">
 
   
-  <meta name="description" content="
+  <meta name="description" content="確かに、いろいろシンプルでいいかも
+Octopressは、普通はコードとかを載せちゃう系らしいよ
 ">
   
 
@@ -71,7 +72,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2012/07/17/hello/">Hello</a></h1>
+      <h1 class="entry-title"><a href="/blog/2012/07/17/hello/">Octopressデビューしました</a></h1>
     
     
       <p class="meta">
@@ -94,7 +95,8 @@
   </header>
 
 
-  <div class="entry-content">
+  <div class="entry-content"><p>確かに、いろいろシンプルでいいかも<br/>
+Octopressは、普通はコードとかを載せちゃう系らしいよ</p>
 </div>
   
   
@@ -111,18 +113,37 @@
 <aside class="sidebar">
   
     <section>
+  <h1>About Me</h1>
+  <p>好きな言語：Ruby／期待の言語：Scala／好きな物：iPhone、ラーメン、日本酒、折り畳み自転車、アロエ、ルービックキューブ、将棋の駒、バイク／大型二輪免許を持っているがバイクは持っていない。今まで乗った中で一番好きなバイクはNSR250R SE／政治志向：小さい政府、原発は寿命が来ていないものは稼働すべき派</p>
+  <p>コメントは<a href="https://twitter.com/ykatsu">@ykatsu</a>まで</p>
+</section>
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("ykatsu", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/ykatsu" class="twitter-follow-button" data-show-count="false">Follow @ykatsu</a>
+  
+</section>
+
+<section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2012/07/17/hello/">Hello</a>
+        <a href="/blog/2012/07/17/hello/">Octopressデビューしました</a>
       </li>
     
   </ul>
 </section>
-
-
-
 
 
 
@@ -141,7 +162,24 @@
 
 
 
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
 
 
 
