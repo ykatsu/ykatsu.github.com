@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[ykatsu blog]]></title>
-  <link href="http://ykatsu.github.com/atom.xml" rel="self"/>
-  <link href="http://ykatsu.github.com/"/>
-  <updated>2012-07-20T10:49:19+09:00</updated>
-  <id>http://ykatsu.github.com/</id>
+  <title><![CDATA[君を笑いに来た]]></title>
+  <link href="http://ykatsu.com/atom.xml" rel="self"/>
+  <link href="http://ykatsu.com/"/>
+  <updated>2012-07-20T11:48:40+09:00</updated>
+  <id>http://ykatsu.com/</id>
   <author>
     <name><![CDATA[ykatsu]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Octopressデビューしました]]></title>
-    <link href="http://ykatsu.github.com/blog/2012/07/17/hello/"/>
+    <link href="http://ykatsu.com/blog/2012/07/17/hello/"/>
     <updated>2012-07-17T19:18:00+09:00</updated>
-    <id>http://ykatsu.github.com/blog/2012/07/17/hello</id>
+    <id>http://ykatsu.com/blog/2012/07/17/hello</id>
     <content type="html"><![CDATA[<p>確かに、いろいろシンプルでいいかも<br/>
 Octopressは、普通はコードとかを載せちゃう系らしいよ</p>
 ]]></content>
