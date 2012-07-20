@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[君を笑いに来た]]></title>
+  <title><![CDATA[ポンコツシティ]]></title>
   <link href="http://ykatsu.com/atom.xml" rel="self"/>
   <link href="http://ykatsu.com/"/>
-  <updated>2012-07-20T11:48:40+09:00</updated>
+  <updated>2012-07-20T12:02:40+09:00</updated>
   <id>http://ykatsu.com/</id>
   <author>
     <name><![CDATA[ykatsu]]></name>
