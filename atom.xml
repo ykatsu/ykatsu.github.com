@@ -4,7 +4,7 @@
   <title><![CDATA[ポンコツシティ]]></title>
   <link href="http://ykatsu.com/atom.xml" rel="self"/>
   <link href="http://ykatsu.com/"/>
-  <updated>2012-07-20T15:44:22+09:00</updated>
+  <updated>2012-08-01T23:08:33+09:00</updated>
   <id>http://ykatsu.com/</id>
   <author>
     <name><![CDATA[ykatsu]]></name>
@@ -12,6 +12,35 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[マイクロソフトが新メールサービス Outlook.com を開始したらしい。最低限気になる２点をチェックしてみた]]></title>
+    <link href="http://ykatsu.com/blog/2012/08/01/outlook-dot-com-i-tried/"/>
+    <updated>2012-08-01T19:46:00+09:00</updated>
+    <id>http://ykatsu.com/blog/2012/08/01/outlook-dot-com-i-tried</id>
+    <content type="html"><![CDATA[<p><a href="http://japanese.engadget.com/2012/07/31/outlook-com/">マイクロソフト、新メールサービス Outlook.com を開始。誰でも登録可能 - Engadget Japanese</a></p>
+
+<p>こんな記事があったので、とりあえず登録し、僕がHotmailを使わない理由の重大な２点を調べてみた。</p>
+
+<ol>
+<li>他のメールアドレスへの転送が出来るか</li>
+<li>アカウントの内容が自動で削除されたりしないか</li>
+</ol>
+
+
+<p>さっそく、設定にメールの転送設定の項目があった！さっそく１はクリア。<br/>
+しかしそこには以下の注意書きが。</p>
+
+<p><strong>「少なくとも 270 日ごとにサインインしてください。サインインを行わない場合は、そのアカウントは使用されていないとみなされて削除される場合があります。」</strong></p>
+
+<p>う〜ん。残念。<br/>
+だけど、Hotmailは昔30日とかだったから鬼使えなかったけど、９ヶ月も保持してくれるならアリかもね。</p>
+
+<p>僕は、Google Appsで独自ドメイン運用してるので、それが出来る様になったらまた調査してみようかな。</p>
+
+<p><a href="http://www.outlook.com/">Outlook.com</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[OctopressでCNAMEファイルを置く場所に気をつけろ！]]></title>
