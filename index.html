@@ -9,7 +9,9 @@
   <meta name="author" content="ykatsu">
 
   
-  <meta name="description" content="マイクロソフト、新メールサービス Outlook.com を開始。誰でも登録可能 - Engadget Japanese こんな記事があったので、とりあえず登録し、僕がHotmailを使わない理由の重大な２点を調べてみた。 他のメールアドレスへの転送が出来るか &hellip;">
+  <meta name="description" content="Octopressの右側にTwitterのタイムラインを表示するプラグインがあるのですが、その設定に「公式RT」を表示させる方法がありませんでした。
+なので、自分で追加しました。
+（サイドバーにTwitterタイムラインを出力するには、ここのtwitter_user などを適切に設定するだけなので &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -35,9 +37,8 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">ポンコツシティ</a>
+  <h1><a href="/">ポンコツシティ</a></h1>
   
-  </h1>
 </hgroup>
 
 </header>
@@ -63,6 +64,78 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/02/octopress-twitter-rt/">OctopressのLatest Tweetsに公式RTも表示させる</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-02T10:12:00+09:00" pubdate data-updated="true">Aug 2<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Octopressの右側にTwitterのタイムラインを表示するプラグインがあるのですが、その設定に「公式RT」を表示させる方法がありませんでした。<br/>
+なので、自分で追加しました。<br/>
+（サイドバーにTwitterタイムラインを出力するには、ここのtwitter_user などを適切に設定するだけなので、特に説明はしません）</p>
+
+<p>_config.yml の Twitter関連の設定に twitter_show_retweets: true を追加</p>
+
+<pre><code># Twitter
+twitter_user: ykatsu(ここは自分のTwitterID)
+twitter_tweet_count: 4
+twitter_show_replies: false
+twitter_follow_button: true
+twitter_show_follower_count: false
+twitter_tweet_button: true
+twitter_show_retweets: true
+</code></pre>
+
+<p>souruce/_includes/asides/twitter.html の getTwitterFeed 呼び出しに site.twitter_show_retweets 引数追加</p>
+
+<pre><code>getTwitterFeed("ykatsu", 4, false, true);
+</code></pre>
+
+<p>source/javascripts/twitter.js の getTwitterFeed メソッドの引数に retweets を追加し、urlの項目を追加する。</p>
+
+<pre><code>function getTwitterFeed(user, count, replies, retweets) {
+  count = parseInt(count, 10);
+  $.ajax({
+      url: "http://api.twitter.com/1/statuses/user_timeline/" + user + ".json?trim_user=true&amp;count=" + (count + 20) +"&amp;include_entities=1&amp;include_rts=" + (retweets ? "1" : "0") + "&amp;exclude_replies=" + (replies ? "0" : "1") + "&amp;callback=?"
+    , type: 'jsonp'
+    , error: function (err) { $('#tweets li.loading').addClass('error').text("Twitter's busted"); }
+    , success: function(data) { showTwitterFeed(data.slice(0, count), user); }
+  })
+}
+</code></pre>
+
+<p>以上</p>
+
+<p>ところで、コードブロックにカッチョイイ色を付けるにはどうするんだろ？</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -216,7 +289,7 @@ Octopressは、普通はコードとかを載せちゃう系らしいよ</p>
   </ul>
   <script type="text/javascript">
     $.domReady(function(){
-      getTwitterFeed("ykatsu", 4, false);
+      getTwitterFeed("ykatsu", 4, false, true);
     });
   </script>
   <script src="/javascripts/twitter.js" type="text/javascript"> </script>
@@ -228,6 +301,10 @@ Octopressは、普通はコードとかを載せちゃう系らしいよ</p>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/08/02/octopress-twitter-rt/">OctopressのLatest Tweetsに公式RTも表示させる</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/08/01/outlook-dot-com-i-tried/">マイクロソフトが新メールサービス Outlook.com を開始したらしい。最低限気になる２点をチェックしてみた</a>

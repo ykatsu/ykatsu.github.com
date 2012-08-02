@@ -5,11 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>マイクロソフトが新メールサービス Outlook.com を開始したらしい。最低限気になる２点をチェックしてみた - ポンコツシティ</title>
+  <title>OctopressのLatest Tweetsに公式RTも表示させる - ポンコツシティ</title>
   <meta name="author" content="ykatsu">
 
   
-  <meta name="description" content="マイクロソフト、新メールサービス Outlook.com を開始。誰でも登録可能 - Engadget Japanese こんな記事があったので、とりあえず登録し、僕がHotmailを使わない理由の重大な２点を調べてみた。 他のメールアドレスへの転送が出来るか &hellip;">
+  <meta name="description" content="Octopressの右側にTwitterのタイムラインを表示するプラグインがあるのですが、その設定に「公式RT」を表示させる方法がありませんでした。
+なので、自分で追加しました。
+（サイドバーにTwitterタイムラインを出力するには、ここのtwitter_user などを適切に設定するだけなので &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://ykatsu.com/blog/2012/08/01/outlook-dot-com-i-tried/">
+  <link rel="canonical" href="http://ykatsu.com/blog/2012/08/02/octopress-twitter-rt/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -65,7 +67,7 @@
   
   <header>
     
-      <h1 class="entry-title">マイクロソフトが新メールサービス Outlook.com を開始したらしい。最低限気になる２点をチェックしてみた</h1>
+      <h1 class="entry-title">OctopressのLatest Tweetsに公式RTも表示させる</h1>
     
     
       <p class="meta">
@@ -81,34 +83,50 @@
   
 
 
-<time datetime="2012-08-01T19:46:00+09:00" pubdate data-updated="true">Aug 1<span>st</span>, 2012</time>
+<time datetime="2012-08-02T10:12:00+09:00" pubdate data-updated="true">Aug 2<span>nd</span>, 2012</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p><a href="http://japanese.engadget.com/2012/07/31/outlook-com/">マイクロソフト、新メールサービス Outlook.com を開始。誰でも登録可能 - Engadget Japanese</a></p>
+<div class="entry-content"><p>Octopressの右側にTwitterのタイムラインを表示するプラグインがあるのですが、その設定に「公式RT」を表示させる方法がありませんでした。<br/>
+なので、自分で追加しました。<br/>
+（サイドバーにTwitterタイムラインを出力するには、ここのtwitter_user などを適切に設定するだけなので、特に説明はしません）</p>
 
-<p>こんな記事があったので、とりあえず登録し、僕がHotmailを使わない理由の重大な２点を調べてみた。</p>
+<p>_config.yml の Twitter関連の設定に twitter_show_retweets: true を追加</p>
 
-<ol>
-<li>他のメールアドレスへの転送が出来るか</li>
-<li>アカウントの内容が自動で削除されたりしないか</li>
-</ol>
+<pre><code># Twitter
+twitter_user: ykatsu(ここは自分のTwitterID)
+twitter_tweet_count: 4
+twitter_show_replies: false
+twitter_follow_button: true
+twitter_show_follower_count: false
+twitter_tweet_button: true
+twitter_show_retweets: true
+</code></pre>
 
+<p>souruce/_includes/asides/twitter.html の getTwitterFeed 呼び出しに site.twitter_show_retweets 引数追加</p>
 
-<p>さっそく、設定にメールの転送設定の項目があった！さっそく１はクリア。<br/>
-しかしそこには以下の注意書きが。</p>
+<pre><code>getTwitterFeed("ykatsu", 4, false, true);
+</code></pre>
 
-<p><strong>「少なくとも 270 日ごとにサインインしてください。サインインを行わない場合は、そのアカウントは使用されていないとみなされて削除される場合があります。」</strong></p>
+<p>source/javascripts/twitter.js の getTwitterFeed メソッドの引数に retweets を追加し、urlの項目を追加する。</p>
 
-<p>う〜ん。残念。<br/>
-だけど、Hotmailは昔30日とかだったから鬼使えなかったけど、９ヶ月も保持してくれるならアリかもね。</p>
+<pre><code>function getTwitterFeed(user, count, replies, retweets) {
+  count = parseInt(count, 10);
+  $.ajax({
+      url: "http://api.twitter.com/1/statuses/user_timeline/" + user + ".json?trim_user=true&amp;count=" + (count + 20) +"&amp;include_entities=1&amp;include_rts=" + (retweets ? "1" : "0") + "&amp;exclude_replies=" + (replies ? "0" : "1") + "&amp;callback=?"
+    , type: 'jsonp'
+    , error: function (err) { $('#tweets li.loading').addClass('error').text("Twitter's busted"); }
+    , success: function(data) { showTwitterFeed(data.slice(0, count), user); }
+  })
+}
+</code></pre>
 
-<p>僕は、Google Appsで独自ドメイン運用してるので、それが出来る様になったらまた調査してみようかな。</p>
+<p>以上</p>
 
-<p><a href="http://www.outlook.com/">Outlook.com</a></p>
+<p>ところで、コードブロックにカッチョイイ色を付けるにはどうするんだろ？</p>
 </div>
 
 
@@ -131,12 +149,12 @@
   
 
 
-<time datetime="2012-08-01T19:46:00+09:00" pubdate data-updated="true">Aug 1<span>st</span>, 2012</time>
+<time datetime="2012-08-02T10:12:00+09:00" pubdate data-updated="true">Aug 2<span>nd</span>, 2012</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/その他/'>その他</a>
+    <a class='category' href='/blog/categories/octopress/'>Octopress</a>
   
 </span>
 
@@ -145,7 +163,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://ykatsu.com/blog/2012/08/01/outlook-dot-com-i-tried/" data-via="ykatsu" data-counturl="http://ykatsu.com/blog/2012/08/01/outlook-dot-com-i-tried/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://ykatsu.com/blog/2012/08/02/octopress-twitter-rt/" data-via="ykatsu" data-counturl="http://ykatsu.com/blog/2012/08/02/octopress-twitter-rt/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -158,10 +176,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/07/20/cname-file-must-be-put-at-public-folder-under-octopress/" title="Previous Post: OctopressでCNAMEファイルを置く場所に気をつけろ！">&laquo; OctopressでCNAMEファイルを置く場所に気をつけろ！</a>
+        <a class="basic-alignment left" href="/blog/2012/08/01/outlook-dot-com-i-tried/" title="Previous Post: マイクロソフトが新メールサービス Outlook.com を開始したらしい。最低限気になる２点をチェックしてみた">&laquo; マイクロソフトが新メールサービス Outlook.com を開始したらしい。最低限気になる２点をチェックしてみた</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2012/08/02/octopress-twitter-rt/" title="Next Post: OctopressのLatest Tweetsに公式RTも表示させる">OctopressのLatest Tweetsに公式RTも表示させる &raquo;</a>
       
     </p>
   </footer>
