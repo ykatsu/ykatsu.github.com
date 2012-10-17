@@ -4,7 +4,7 @@
   <title><![CDATA[ポンコツシティ]]></title>
   <link href="http://ykatsu.com/atom.xml" rel="self"/>
   <link href="http://ykatsu.com/"/>
-  <updated>2012-08-17T00:40:15+09:00</updated>
+  <updated>2012-10-17T18:35:45+09:00</updated>
   <id>http://ykatsu.com/</id>
   <author>
     <name><![CDATA[ykatsu]]></name>
@@ -12,6 +12,45 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Herokuに独自ドメイン（サブドメイン）を割り当てる方法 in バリュードメイン(value-domain)]]></title>
+    <link href="http://ykatsu.com/blog/2012/10/17/subdomain-to-heroku/"/>
+    <updated>2012-10-17T17:14:00+09:00</updated>
+    <id>http://ykatsu.com/blog/2012/10/17/subdomain-to-heroku</id>
+    <content type="html"><![CDATA[<p>herokuのドキュメントを見てやるんだけど、CNAMEを使う方法はバリュードメインでは使えないカンジ<br/>
+<a href="https://devcenter.heroku.com/articles/custom-domains#naked-domains-mydomaincom">https://devcenter.heroku.com/articles/custom-domains#naked-domains-mydomaincom</a></p>
+
+<p>ググると最初に出て来るQiitaに載ってた以下の方法だと、 Zerigo DNSのアドオンを使わないといけないみたいでイヤーンなカンジ<br/>
+Herokuアプリに独自ドメイン/サブドメインのみを割り当てる(VALUE-DOMAIN編) Qiita - <a href="http://qiita.com/items/28e24501116b622c71be">http://qiita.com/items/28e24501116b622c71be</a></p>
+
+<p>で、試してみたら、もっと簡単に出来た。手順は以下の通り。（sub.hoge.comを割り当てる場合）</p>
+
+<p>ローカルのアプリケーションフォルダにてドメインの追加コマンド実行</p>
+
+<pre><code>$ heroku domains:add sub.hoge.com
+</code></pre>
+
+<p>バリュードメインに行ってDNS設定</p>
+
+<pre><code>a sub 75.101.163.44
+a sub 75.101.145.87
+a sub 174.129.212.2
+</code></pre>
+
+<p>しばらく待って、変更されたか確認する。</p>
+
+<pre><code>$ host sub.hoge.com
+</code></pre>
+
+<p>こんなんが出ればイイカンジ</p>
+
+<pre><code>sub.hoge.com has address 174.129.212.2 
+sub.hoge.com has address 75.101.163.44 
+sub.hoge.com has address 75.101.145.87
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[5LINKSという折りたたみ自転車が良さげ]]></title>

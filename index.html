@@ -9,10 +9,8 @@
   <meta name="author" content="ykatsu">
 
   
-  <meta name="description" content="今日、秋葉のチャリ屋で、5LINKSという折り畳み自転車を偶然見かけた。
-僕の折りたたみ自転車の使い方は、主に電車で移動して移動先で乗るというカンジなので、求める折りたたみ自転車に求めるものはこんな感じ そこそこ軽い事
-折り畳んだ時に、転がせる事
-折りたたみ＆展開時に微調整が不要な事 &hellip;">
+  <meta name="description" content="herokuのドキュメントを見てやるんだけど、CNAMEを使う方法はバリュードメインでは使えないカンジ
+https://devcenter.heroku.com/articles/custom-domains#naked-domains-mydomaincom &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +63,72 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/10/17/subdomain-to-heroku/">Herokuに独自ドメイン（サブドメイン）を割り当てる方法 in バリュードメイン(value-domain)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-17T17:14:00+09:00" pubdate data-updated="true">Oct 17<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>herokuのドキュメントを見てやるんだけど、CNAMEを使う方法はバリュードメインでは使えないカンジ<br/>
+<a href="https://devcenter.heroku.com/articles/custom-domains#naked-domains-mydomaincom">https://devcenter.heroku.com/articles/custom-domains#naked-domains-mydomaincom</a></p>
+
+<p>ググると最初に出て来るQiitaに載ってた以下の方法だと、 Zerigo DNSのアドオンを使わないといけないみたいでイヤーンなカンジ<br/>
+Herokuアプリに独自ドメイン/サブドメインのみを割り当てる(VALUE-DOMAIN編) Qiita - <a href="http://qiita.com/items/28e24501116b622c71be">http://qiita.com/items/28e24501116b622c71be</a></p>
+
+<p>で、試してみたら、もっと簡単に出来た。手順は以下の通り。（sub.hoge.comを割り当てる場合）</p>
+
+<p>ローカルのアプリケーションフォルダにてドメインの追加コマンド実行</p>
+
+<pre><code>$ heroku domains:add sub.hoge.com
+</code></pre>
+
+<p>バリュードメインに行ってDNS設定</p>
+
+<pre><code>a sub 75.101.163.44
+a sub 75.101.145.87
+a sub 174.129.212.2
+</code></pre>
+
+<p>しばらく待って、変更されたか確認する。</p>
+
+<pre><code>$ host sub.hoge.com
+</code></pre>
+
+<p>こんなんが出ればイイカンジ</p>
+
+<pre><code>sub.hoge.com has address 174.129.212.2 
+sub.hoge.com has address 75.101.163.44 
+sub.hoge.com has address 75.101.145.87
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -370,7 +434,7 @@ Octopressは、普通はコードとかを載せちゃう系らしいよ</p>
   
     <section>
   <h1>About Me</h1>
-  <p>Ruby、Scala、iPhone、ラーメン、日本酒、折り畳み自転車、アロエ、苔、ルービックキューブ、将棋の駒、バイク、シャア／小さい政府、原発は寿命が来ていないものは稼働すべき</p>
+  <p>フリーのポンコツプログラマ／好きなモノ：Ruby、Scala、iPhone、ラーメン、日本酒、折り畳み自転車、アロエ、苔、ルービックキューブ、将棋の駒、バイク、シャア／小さい政府、原発は寿命が来ていないものは稼働すべき</p>
   <p>コメントは<a href="https://twitter.com/ykatsu">@ykatsu</a>まで</p>
 </section>
 
@@ -395,6 +459,10 @@ Octopressは、普通はコードとかを載せちゃう系らしいよ</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/10/17/subdomain-to-heroku/">Herokuに独自ドメイン（サブドメイン）を割り当てる方法 in バリュードメイン(value-domain)</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/08/17/5links/">5LINKSという折りたたみ自転車が良さげ</a>
       </li>
     
@@ -408,10 +476,6 @@ Octopressは、普通はコードとかを載せちゃう系らしいよ</p>
     
       <li class="post">
         <a href="/blog/2012/07/20/cname-file-must-be-put-at-public-folder-under-octopress/">OctopressでCNAMEファイルを置く場所に気をつけろ！</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/07/17/hello/">Octopressデビューしました</a>
       </li>
     
   </ul>
