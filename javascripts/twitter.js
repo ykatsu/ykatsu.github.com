@@ -70,7 +70,7 @@ function showTwitterFeed(tweets, twitter_user) {
 function getTwitterFeed(user, count, replies, retweets) {
   count = parseInt(count, 10);
   $.ajax({
-      url: "https://api.twitter.com/1/statuses/user_timeline/" + user + ".json?trim_user=true&count=" + (count + 20) + "&include_entities=1&include_rts=" + (retweets ? "1" : "0") + "&exclude_replies=" + (replies ? "0" : "1") + "&callback=?"
+      url: "http://api.twitter.com/1/statuses/user_timeline/" + user + ".json?trim_user=true&count=" + (count + 20) + "&include_entities=1&include_rts=" + (retweets ? "1" : "0") + "&exclude_replies=" + (replies ? "0" : "1") + "&callback=?"
     , type: 'jsonp'
     , error: function (err) { $('#tweets li.loading').addClass('error').text("Twitter's busted"); }
     , success: function(data) { showTwitterFeed(data.slice(0, count), user); }
