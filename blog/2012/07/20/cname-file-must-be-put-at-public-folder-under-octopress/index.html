@@ -188,10 +188,22 @@ octopressフォルダ直下や、実際のリポジトリルートである_depl
 <aside class="sidebar-nav span3">
   
     <section>
-  <h1>About Me</h1>
-  <p><img src="http://api.twitter.com/1/users/profile_image?screen_name=ykatsu&size=bigger"></p>
-  <p>フリーのポンコツプログラマ／好きなモノ：Ruby、iPhone、ラーメン、大衆居酒屋、社食学食、折り畳み自転車、バイク、ルービックキューブ、将棋の駒、シャア、アロエ</p>
-  <p>コメントは<a href="https://twitter.com/ykatsu">@ykatsu</a>まで</p>
+  <p><img src="http://api.twitter.com/1/users/profile_image?screen_name=ykatsu&size=bigger">&nbsp;コメントは<a href="https://twitter.com/ykatsu" target=”_blank”>@ykatsu</a>まで</p>
+  <div id="description"></div>
+
+<script>
+$(function(){
+    var account = "ykatsu";
+    var twitAPI = "http://api.twitter.com/1/statuses/user_timeline/"+account+".json?callback=?";
+    function jsonTwit(){
+        $.getJSON(twitAPI, function(data){
+            var desp = data[0].user.description;
+            $("<p></p>").html(desp).prependTo("#description")
+        },"json");
+    };
+    jsonTwit();
+});
+</script>
 </section>
 
 <section class="well">
