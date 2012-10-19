@@ -4,7 +4,7 @@
   <title><![CDATA[ポンコツシティ]]></title>
   <link href="http://ykatsu.com/atom.xml" rel="self"/>
   <link href="http://ykatsu.com/"/>
-  <updated>2012-10-19T11:13:14+09:00</updated>
+  <updated>2012-10-19T23:21:04+09:00</updated>
   <id>http://ykatsu.com/</id>
   <author>
     <name><![CDATA[ykatsu]]></name>
@@ -128,33 +128,53 @@ Stridaの最上位も１０万ぐらいしたハズなので、悪く無い値�
 
 <p>_config.yml の Twitter関連の設定に twitter_show_retweets: true を追加</p>
 
-<pre><code># Twitter
-twitter_user: ykatsu(ここは自分のTwitterID)
-twitter_tweet_count: 4
-twitter_show_replies: false
-twitter_follow_button: true
-twitter_show_follower_count: false
-twitter_tweet_button: true
-twitter_show_retweets: true
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># Twitter
+</span><span class='line'>twitter_user: ykatsu #ここは自分のTwitterID
+</span><span class='line'>twitter_tweet_count: 4
+</span><span class='line'>twitter_show_replies: false
+</span><span class='line'>twitter_follow_button: true
+</span><span class='line'>twitter_show_follower_count: false
+</span><span class='line'>twitter_tweet_button: true
+</span><span class='line'>twitter_show_retweets: true</span></code></pre></td></tr></table></div></figure>
+
 
 <p>souruce/_includes/asides/twitter.html の getTwitterFeed 呼び出しに site.twitter_show_retweets 引数追加</p>
 
-<pre><code>getTwitterFeed("ykatsu", 4, false, true);
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>getTwitterFeed("ykatsu", 4, false, true);</span></code></pre></td></tr></table></div></figure>
+
+
+<p>（これ本当は site.twitter_user や site.twitter_tweet_count と記述してるんだけど、Octopress上だと、変数に値が代入されて表示されちゃいます。抑制の仕方を知ってたらtwitterで教えて下さると嬉しいです）</p>
 
 <p>source/javascripts/twitter.js の getTwitterFeed メソッドの引数に retweets を追加し、urlの項目を追加する。</p>
 
-<pre><code>function getTwitterFeed(user, count, replies, retweets) {
-  count = parseInt(count, 10);
-  $.ajax({
-      url: "http://api.twitter.com/1/statuses/user_timeline/" + user + ".json?trim_user=true&amp;count=" + (count + 20) +"&amp;include_entities=1&amp;include_rts=" + (retweets ? "1" : "0") + "&amp;exclude_replies=" + (replies ? "0" : "1") + "&amp;callback=?"
-    , type: 'jsonp'
-    , error: function (err) { $('#tweets li.loading').addClass('error').text("Twitter's busted"); }
-    , success: function(data) { showTwitterFeed(data.slice(0, count), user); }
-  })
-}
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>function getTwitterFeed(user, count, replies, retweets) {
+</span><span class='line'>  count = parseInt(count, 10);
+</span><span class='line'>  $.ajax({
+</span><span class='line'>      url: "http://api.twitter.com/1/statuses/user_timeline/" + user + ".json?trim_user=true&count=" + (count + 20) +"&include_entities=1&include_rts=" + (retweets ? "1" : "0") + "&exclude_replies=" + (replies ? "0" : "1") + "&callback=?"
+</span><span class='line'>    , type: 'jsonp'
+</span><span class='line'>    , error: function (err) { $('#tweets li.loading').addClass('error').text("Twitter's busted"); }
+</span><span class='line'>    , success: function(data) { showTwitterFeed(data.slice(0, count), user); }
+</span><span class='line'>  })
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
 
 <p>以上</p>
 
