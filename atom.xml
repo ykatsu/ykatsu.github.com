@@ -4,7 +4,7 @@
   <title><![CDATA[ポンコツシティ]]></title>
   <link href="http://ykatsu.com/atom.xml" rel="self"/>
   <link href="http://ykatsu.com/"/>
-  <updated>2012-10-20T01:17:53+09:00</updated>
+  <updated>2012-10-22T10:35:16+09:00</updated>
   <id>http://ykatsu.com/</id>
   <author>
     <name><![CDATA[ykatsu]]></name>
@@ -25,7 +25,7 @@
 
 <p>参考：Herokuアプリに独自ドメイン/サブドメインのみを割り当てる(VALUE-DOMAIN編) Qiita - <a href="http://qiita.com/items/28e24501116b622c71be">http://qiita.com/items/28e24501116b622c71be</a></p>
 
-<p>で、試してみたら、もっと簡単に出来た。手順は以下の通り。（sub.hoge.comを割り当てる場合）</p>
+<p>で、自分でいろいろ試してみたら、もっと簡単に出来た。手順は以下の通り。（sub.hoge.comを割り当てる場合）</p>
 
 <p>ローカルのアプリケーションフォルダにてドメインの追加コマンド実行</p>
 
